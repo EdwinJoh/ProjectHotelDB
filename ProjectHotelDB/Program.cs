@@ -6,7 +6,8 @@ using ProjectHotelDB.Models;
 //DeleteCustomer();
 //SelectCustomer("c");
 //UpdateCustomer();
-SelectBooking("vodka");
+//HotelCommunication();
+Test();
 
 void SelectCustomer(string startWith)
 {
@@ -95,5 +96,39 @@ void AddToCustomerRequest(string specialRequest)
             ExtraCost = 300
         });
         db.SaveChanges();
+    }
+}
+
+void HotelCommunication()
+{
+    using (var db = new HotelDBContext())
+    {
+        var cComunication = db.Set<HotelCustomerCommunication>();
+        cComunication.Add(new HotelCustomerCommunication
+        {
+            CustomerId = 4,
+            CustomerMessage = "help meee",
+            EmployeeMessage = "How can i help you ?"
+        });
+        db.SaveChanges();
+    }
+}
+
+void UpdateHotelCommunication()
+{
+    using (var db = new HotelDBContext())
+    {
+        var infodata = db.Customers.FirstOrDefault(c => c.SocialSecurityNumber == "19941005-7120");
+        if (infodata != null)
+        {
+            var infodat = new HotelCustomerCommunication()
+            {
+                CustomerId = infodata.Id,
+                CustomerMessage = "jek",
+                EmployeeMessage=  "asdd"
+            };
+            db.HotelCustomerCommunications.Add(infodat);
+            db.SaveChanges();
+        }
     }
 }
