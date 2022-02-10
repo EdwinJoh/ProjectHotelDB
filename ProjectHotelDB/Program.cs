@@ -7,7 +7,7 @@ using ProjectHotelDB.Models;
 //SelectCustomer("c");
 //UpdateCustomer();
 //HotelCommunication();
-Test();
+
 
 void SelectCustomer(string startWith)
 {
